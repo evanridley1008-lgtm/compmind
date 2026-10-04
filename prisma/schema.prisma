@@ -1,0 +1,475 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String     @id @default(cuid())
+  username            String     @unique
+  email               String     @unique
+  passwordHash        String?
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+  displayName         String?
+  avatarUrl           String?
+  bio                 String?
+  role                UserRole   @default(PLAYER)
+  status              UserStatus @default(ACTIVE)
+  region              String?
+  country             String?
+
+  // Onboarding
+  onboardingCompleted Boolean    @default(false)
+  onboardingGoal      String?
+  onboardingPlatform  String?
+
+  // Relations
+  sessions           Session[]
+  connectedAccounts  ConnectedAccount[]
+  matches            Match[]
+  analyses           Analysis[]
+  replays            Replay[]
+  trainingPlans      TrainingPlan[]
+  subscriptions      Subscription[]
+  registrations      TournamentRegistration[]
+  results            TournamentResult[]
+  achievements       UserAchievement[]
+  routines           Routine[]
+  leaderboardEntries LeaderboardEntry[]
+
+  @@index([region])
+  @@index([role])
+  @@index([createdAt])
+  @@index([onboardingCompleted])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model ConnectedAccount {
+  id           String   @id @default(cuid())
+  userId       String
+  platform     Platform
+  accountId    String
+  username     String
+  connectedAt  DateTime @default(now())
+  lastSyncedAt DateTime?
+  isConnected  Boolean  @default(true)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([platform, accountId])
+  @@index([userId])
+}
+
+model Match {
+  id             String        @id @default(cuid())
+  userId         String
+  playedAt       DateTime      @default(now())
+  category       MatchCategory
+  type           MatchType
+  mode           GameMode
+  eventId        String?
+  eventName      String?
+  eventRound     String?
+  placement      Int
+  eliminations   Int
+  damage         Int?
+  survivalTime   Int?
+  killsPerMinute Float?
+  points         Float?
+  rankChange     Int?
+  analyzed       Boolean       @default(false)
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  analysis Analysis?
+  replays  Replay[]
+
+  @@index([userId, playedAt])
+  @@index([eventId])
+  @@index([category])
+}
+
+model Replay {
+  id          String       @id @default(cuid())
+  userId      String
+  matchId     String?
+  fileName    String
+  fileUrl     String?
+  fileSize    Int?
+  status      ReplayStatus @default(UPLOADED)
+  uploadedAt  DateTime     @default(now())
+  processedAt DateTime?
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  match    Match?    @relation(fields: [matchId], references: [id], onDelete: SetNull)
+  analysis Analysis?
+
+  @@index([userId, uploadedAt])
+  @@index([status])
+}
+
+model Analysis {
+  id           String         @id @default(cuid())
+  userId       String
+  matchId      String         @unique
+  replayId     String?        @unique
+  status       AnalysisStatus @default(QUEUED)
+  createdAt    DateTime       @default(now())
+  completedAt  DateTime?
+  overallScore Int?
+  summary      String?
+
+  user     User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  match    Match           @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  replay   Replay?         @relation(fields: [replayId], references: [id], onDelete: SetNull)
+  findings AnalysisFinding[]
+
+  @@index([userId, createdAt])
+  @@index([status])
+}
+
+model AnalysisFinding {
+  id             String           @id @default(cuid())
+  analysisId     String
+  category       AnalysisCategory
+  severity       AnalysisSeverity
+  title          String
+  description    String
+  timestamp      String?
+  confidence     Float?
+  recommendation String?
+
+  analysis Analysis @relation(fields: [analysisId], references: [id], onDelete: Cascade)
+
+  @@index([analysisId])
+  @@index([category])
+  @@index([severity])
+}
+
+model TrainingPlan {
+  id                   String   @id @default(cuid())
+  userId               String
+  title                String
+  description          String?
+  createdAt            DateTime @default(now())
+  startDate            DateTime?
+  endDate              DateTime?
+  completionPercentage Float    @default(0)
+
+  user       User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  objectives TrainingObjective[]
+
+  @@index([userId, createdAt])
+}
+
+model TrainingObjective {
+  id               String                  @id @default(cuid())
+  trainingPlanId   String
+  title            String
+  description      String
+  category         String
+  difficulty       TrainingDifficulty
+  estimatedMinutes Int
+  status           TrainingObjectiveStatus @default(NOT_STARTED)
+  target           String?
+  progress         Float                   @default(0)
+
+  trainingPlan TrainingPlan @relation(fields: [trainingPlanId], references: [id], onDelete: Cascade)
+
+  @@index([trainingPlanId])
+  @@index([status])
+}
+
+model Routine {
+  id          String   @id @default(cuid())
+  userId      String
+  title       String
+  description String?
+  dayOfWeek   Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user       User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  objectives RoutineObjective[]
+
+  @@index([userId])
+}
+
+model RoutineObjective {
+  id        String                  @id @default(cuid())
+  routineId String
+  title     String
+  category  String
+  duration  Int
+  status    TrainingObjectiveStatus @default(NOT_STARTED)
+  progress  Float                   @default(0)
+
+  routine Routine @relation(fields: [routineId], references: [id], onDelete: Cascade)
+
+  @@index([routineId])
+}
+
+model Tournament {
+  id             String           @id @default(cuid())
+  name           String
+  type           TournamentType
+  description    String?
+  season         String?
+  chapter        String?
+  region         String?
+  platform       String?
+  status         TournamentStatus @default(UPCOMING)
+  startTime      DateTime
+  endTime        DateTime?
+  logoUrl        String?
+  playerCapacity Int?
+  prizePool      String?
+  featured       Boolean          @default(false)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  registrations TournamentRegistration[]
+  results       TournamentResult[]
+
+  @@index([status])
+  @@index([startTime])
+}
+
+model TournamentRegistration {
+  id           String             @id @default(cuid())
+  tournamentId String
+  userId       String
+  status       RegistrationStatus @default(REGISTERED)
+  registeredAt DateTime           @default(now())
+
+  tournament Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([tournamentId, userId])
+  @@index([userId])
+}
+
+model TournamentResult {
+  id            String   @id @default(cuid())
+  tournamentId  String
+  userId        String
+  placement     Int
+  points        Float    @default(0)
+  eliminations  Int      @default(0)
+  matchesPlayed Int      @default(0)
+  prizeWon      String?
+  published     Boolean  @default(false)
+
+  tournament Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([tournamentId, userId])
+  @@index([userId, points])
+  @@index([tournamentId, placement])
+}
+
+model LeaderboardEntry {
+  id        String          @id @default(cuid())
+  userId    String
+  type      LeaderboardType
+  region    String?
+  rank      Int
+  value     Float
+  updatedAt DateTime        @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, type, region])
+  @@index([type, region, rank])
+}
+
+model Subscription {
+  id                  String             @id @default(cuid())
+  userId              String             @unique
+  plan                SubscriptionPlan
+  status              SubscriptionStatus
+  startedAt           DateTime
+  currentPeriodStart  DateTime
+  currentPeriodEnd    DateTime
+  cancelAtPeriodEnd   Boolean            @default(false)
+  creatorCode         String?
+  stripeCustomerId    String?
+  stripeSubscriptionId String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([status])
+  @@index([plan])
+}
+
+model Achievement {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  name        String
+  description String
+  icon        String?
+  createdAt   DateTime @default(now())
+
+  users UserAchievement[]
+}
+
+model UserAchievement {
+  id            String   @id @default(cuid())
+  userId        String
+  achievementId String
+  unlockedAt    DateTime @default(now())
+
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  achievement Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, achievementId])
+  @@index([userId])
+}
+
+enum UserRole {
+  PLAYER
+  COACH
+  CREATOR
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  PENDING
+}
+
+enum Platform {
+  EPIC
+  PLAYSTATION
+  XBOX
+  NINTENDO
+}
+
+enum MatchCategory {
+  TOURNAMENT
+  RANKED
+  PUB
+}
+
+enum MatchType {
+  FNCS
+  VICTORY_CUP
+  CASH_CUP
+  RELOAD
+  RANKED_CUP
+  RANKED
+  BATTLE_ROYALE
+  ZERO_BUILD
+}
+
+enum GameMode {
+  SOLO
+  DUOS
+  TRIOS
+  SQUADS
+}
+
+enum ReplayStatus {
+  UPLOADED
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum AnalysisStatus {
+  QUEUED
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum AnalysisCategory {
+  FIGHTING
+  POSITIONING
+  ROTATIONS
+  RESOURCES
+  ENDGAME
+  MECHANICS
+  DECISION_MAKING
+}
+
+enum AnalysisSeverity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum TrainingDifficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  ELITE
+}
+
+enum TrainingObjectiveStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum TournamentType {
+  FNCS
+  VICTORY_CUP
+  CASH_CUP
+  RELOAD
+  RANKED_CUP
+  OTHER
+}
+
+enum TournamentStatus {
+  UPCOMING
+  LIVE
+  COMPLETED
+}
+
+enum RegistrationStatus {
+  REGISTERED
+  CANCELLED
+  ELIGIBLE
+  DISQUALIFIED
+}
+
+enum LeaderboardType {
+  RATING
+  TOURNAMENT_POINTS
+  TOURNAMENT_WINS
+  ELIMINATIONS
+}
+
+enum SubscriptionPlan {
+  FREE
+  PRO
+  TEAM
+  ENTERPRISE
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  TRIALING
+  PAST_DUE
+  CANCELLED
+  EXPIRED
+}

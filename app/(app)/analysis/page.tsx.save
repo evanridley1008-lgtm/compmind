@@ -1,0 +1,170 @@
+"use client";
+
+import { useState } from "react";
+import PageHeader from "../../../components/shared/PageHeader";
+import SectionCard from "../../../components/shared/SectionCard";
+import StatusBadge from "../../../components/shared/StatusBadge";
+import ProgressBar from "../../../components/shared/ProgressBar";
+
+const findings = [
+  {
+    title: "Late rotation into moving zone",
+    category: "Rotations",
+    severity: "high" as const,
+    timestamp: "12:48",
+    description:
+      "You remained in your previous position too long and had to rotate through exposed terrain.",
+    recommendation:
+      "Begin rotating earlier and prioritise the next safe zone layer before the storm forces movement.",
+  },
+  {
+    title: "Exposed to multiple angles",
+    category: "Positioning",
+    severity: "high" as const,
+    timestamp: "08:31",
+    description:
+      "Your position allowed multiple opponents to maintain lines of sight at the same time.",
+    recommendation:
+      "Use natural cover and build a more protected fighting position before taking extended trades.",
+  },
+  {
+    title: "Damage advantage not converted",
+    category: "Fighting",
+    severity: "medium" as const,
+    timestamp: "06:42",
+    description:
+      "You created an early damage advantage but did not immediately convert it into a controlled elimination.",
+    recommendation:
+      "After gaining significant damage, close the fight with controlled pressure rather than resetting unnecessarily.",
+  },
+  {
+    title: "Strong piece-control sequence",
+    category: "Mechanics",
+    severity: "low" as const,
+    timestamp: "10:17",
+    description:
+      "Clean edits and piece placement created a strong advantage before the elimination.",
+    recommendation:
+      "Keep using this sequence as a benchmark for your fighting practice.",
+  },
+];
+
+const categories = [
+  { name: "Mechanics", score: 91 },
+  { name: "Fighting", score: 76 },
+  { name: "Positioning", score: 68 },
+  { name: "Rotations", score: 63 },
+  { name: "Resources", score: 82 },
+  { name: "Endgame", score: 71 },
+];
+
+export default function AnalysisPage() {
+  const [selectedFinding, setSelectedFinding] = useState(0);
+
+  const finding = findings[selectedFinding];
+
+  return (
+    <div className="cm-page">
+      <PageHeader
+        eyebrow="AI PERFORMANCE ANALYSIS"
+        title="Gameplay Analysis"
+        description="Review your latest gameplay findings, strengths and improvement opportunities."
+        actions={
+          <button className="cm-button cm-button-primary">
+            Analyse New Replay
+          </button>
+        }
+      />
+
+      <div className="mt-6 grid gap-4 md:grid-cols-4">
+        <div className="cm-card p-5">
+          <p className="text-sm text-slate-500">Overall Score</p>
+          <p className="mt-2 text-3xl font-bold text-slate-950">78</p>
+          <p className="mt-1 text-sm font-medium text-emerald-600">
+            +6 this month
+          </p>
+i        </div>
+
+        <div className="cm-card p-5">
+          <p className="text-sm text-slate-500">Analysed Matches</p>
+          <p className="mt-2 text-3xl font-bold text-slate-950">24</p>
+          <p className="mt-1 text-sm text-slate-500">Across 7 events</p>
+        </div>
+
+        <div className="cm-card p-5">
+          <p className="text-sm text-slate-500">High Priority</p>
+          <p className="mt-2 text-3xl font-bold text-slate-950">3</p>
+          <p className="mt-1 text-sm text-slate-500">
+            Findings requiring attention
+          </p>
+        </div>
+
+        <div className="cm-card p-5">
+          <p className="text-sm text-slate-500">Performance Level</p>
+          <p className="mt-2 text-3xl font-bold text-slate-950">
+            Competitive
+          </p>
+          <p className="mt-1 text-sm text-blue-600">Improving</p>
+        </div>
+      </div>
+
+      <div className="mt-6 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+        <SectionCard
+          title="Performance Breakdown"
+          description="Your current CompMind performance scores."
+        >
+          <div className="space-y-5">
+            {categories.map((category) => (
+              <div key={category.name}>
+                <div className="mb-2 flex items-center justify-between">
+                  <span className="text-sm font-semibold text-slate-800">
+                    {category.name}
+                  </span>
+                  <span className="text-sm font-bold text-slate-950">
+                    {category.score}
+                  </span>
+                </div>
+
+                <ProgressBar value={category.score} />
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+
+        <SectionCard
+          title="AI Summary"
+          description="What CompMind currently sees in your gameplay."
+        >
+          <div className="rounded-xl border border-blue-100 bg-blue-50 p-5">
+            <p className="text-sm leading-6 text-slate-700">
+              Your mechanics are currently your strongest area. The largest
+              opportunity is converting that mechanical advantage into better
+              positioning and earlier rotations.
+            </p>
+
+            <div className="mt-5 rounded-lg border border-white bg-white p-4">
+              <p className="text-xs font-bold uppercase tracking-wide text-blue-600">
+                Current Focus
+              </p>
+
+              <p className="mt-2 text-lg font-bold text-slate-950">
+                Rotations
+              </p>
+
+              <p className="mt-1 text-sm text-slate-500">
+                Performance score: 63
+              </p>
+            </div>
+          </div>
+        </SectionCard>
+      </div>
+
+      <div className="mt-6">
+        <SectionCard
+          title="Gameplay Findings"
+          description="Specific moments detected during your analysed matches."
+        >
+          <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+            <div
+               
+                  
