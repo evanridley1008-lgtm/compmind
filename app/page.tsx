@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#f7faff] text-[#101828]">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur-xl">
+      <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-xl">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           <Link href="/" className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-lg font-black text-white shadow-lg shadow-blue-600/20">
@@ -17,24 +17,19 @@ export default function Home() {
           </Link>
 
           <div className="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex">
-            <a
-              href="#features"
-              className="transition hover:text-blue-600"
-            >
+            <a href="#features" className="transition hover:text-blue-600">
               Features
             </a>
 
-            <a
-              href="#how-it-works"
-              className="transition hover:text-blue-600"
-            >
+            <a href="#how-it-works" className="transition hover:text-blue-600">
               How it works
             </a>
 
-            <a
-              href="#pricing"
-              className="transition hover:text-blue-600"
-            >
+            <a href="#about" className="transition hover:text-blue-600">
+              About
+            </a>
+
+            <a href="#pricing" className="transition hover:text-blue-600">
               Pricing
             </a>
           </div>
@@ -98,7 +93,7 @@ export default function Home() {
             </div>
 
             <p className="mt-5 text-xs font-medium text-slate-400">
-              Connect your Epic Games account and build your competitive
+              Connect a supported game account and build your competitive
               profile.
             </p>
           </div>
@@ -294,7 +289,7 @@ export default function Home() {
 
           <div className="mt-16 grid gap-8 md:grid-cols-5">
             {[
-              ["01", "CONNECT", "Connect your Epic Games account."],
+              ["01", "CONNECT", "Connect your supported game account."],
               ["02", "PLAY", "Play your matches normally."],
               ["03", "ANALYSE", "Understand what actually happened."],
               ["04", "TRAIN", "Work directly on your weaknesses."],
@@ -345,7 +340,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Epic connection */}
+      {/* Account connection */}
       <section className="border-t border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-6 py-24">
           <div className="grid items-center gap-12 lg:grid-cols-2">
@@ -362,13 +357,12 @@ export default function Home() {
               </h2>
 
               <p className="mt-6 text-lg leading-8 text-slate-500">
-                Your CompMind account will connect to your Epic Games
-                identity, allowing your competitive profile to be built
-                around the Fortnite player you actually use.
+                Connect your supported game account to CompMind and build
+                a competitive profile around the player you actually use.
               </p>
 
               <div className="mt-8 space-y-4">
-                <Check text="Verified Fortnite player identity" />
+                <Check text="Competitive player profile" />
                 <Check text="Competitive statistics and results" />
                 <Check text="One profile for your improvement history" />
               </div>
@@ -394,12 +388,12 @@ export default function Home() {
                     </p>
 
                     <p className="text-sm text-slate-500">
-                      Epic Games · Connected
+                      Game account · Connected
                     </p>
                   </div>
 
                   <span className="ml-auto rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">
-                    Verified
+                    Connected
                   </span>
                 </div>
 
@@ -469,6 +463,73 @@ export default function Home() {
         </div>
       </section>
 
+      {/* About / Publisher */}
+      <section
+        id="about"
+        className="border-t border-slate-200 bg-white"
+      >
+        <div className="mx-auto max-w-5xl px-6 py-24">
+          <div className="rounded-3xl border border-slate-200 bg-[#f8fafc] p-8 shadow-sm sm:p-10">
+            <p className="text-sm font-bold uppercase tracking-widest text-blue-600">
+              About CompMind
+            </p>
+
+            <h2 className="mt-3 text-4xl font-black tracking-tight">
+              A competitive improvement platform built for players.
+            </h2>
+
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+              CompMind is an independent software platform designed to
+              help competitive Fortnite players analyse gameplay,
+              identify weaknesses and improve through personalised
+              training and performance insights.
+            </p>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              <InfoCard
+                label="Application"
+                value="CompMind"
+              />
+
+              <InfoCard
+                label="Publisher"
+                value="Evan Ridley"
+              />
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-5">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                  Contact
+                </p>
+
+                <a
+                  href="mailto:evanridley1008@gmail.com"
+                  className="mt-2 block break-all font-bold text-blue-600 transition hover:text-blue-700"
+                >
+                  evanridley1008@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                Website
+              </p>
+
+              <p className="mt-2 font-bold text-slate-950">
+                https://compmind.xyz
+              </p>
+            </div>
+
+            <p className="mt-8 text-sm leading-6 text-slate-500">
+              CompMind is an independent service and is not affiliated
+              with, sponsored by, or endorsed by Epic Games. References
+              to third-party games and services are used only where
+              necessary to describe compatibility and functionality.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="bg-blue-600">
         <div className="mx-auto max-w-5xl px-6 py-24 text-center">
@@ -493,7 +554,7 @@ export default function Home() {
             <Link
               href="/login"
               className="font-bold text-white underline underline-offset-4"
-            >
+              >
               Log in
             </Link>
           </p>
@@ -502,19 +563,37 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="bg-slate-950">
-        <div className="mx-auto max-w-7xl px-6 py-12">
-          <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="text-lg font-black text-white">
-                COMPMIND
+        <div className="mx-auto max-w-7xl px-6 py-14">
+          <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
+            <div className="max-w-md">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-lg font-black text-white">
+                  C
+                </div>
+
+                <div className="text-lg font-black text-white">
+                  COMPMIND
+                </div>
               </div>
 
-              <p className="mt-2 text-sm text-slate-500">
-                Your competitive edge.
+              <p className="mt-4 text-sm leading-6 text-slate-500">
+                Competitive gameplay analysis and improvement tools for
+                Fortnite players.
               </p>
+
+              <p className="mt-5 text-sm font-semibold text-slate-400">
+                Operated by Evan Ridley
+              </p>
+
+              <a
+                href="mailto:evanridley1008@gmail.com"
+                className="mt-1 block text-sm text-slate-500 transition hover:text-white"
+              >
+                evanridley1008@gmail.com
+              </a>
             </div>
 
-            <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-400">
+            <div className="flex flex-wrap gap-x-7 gap-y-4 text-sm text-slate-400">
               <a
                 href="#features"
                 className="transition hover:text-white"
@@ -523,11 +602,32 @@ export default function Home() {
               </a>
 
               <a
+                href="#how-it-works"
+                className="transition hover:text-white"
+              >
+                How it works
+              </a>
+
+              <a
+                href="#about"
+                className="transition hover:text-white"
+              >
+                About
+              </a>
+
+              <a
                 href="#pricing"
                 className="transition hover:text-white"
               >
                 Pricing
               </a>
+
+              <Link
+                href="/privacy"
+                className="transition hover:text-white"
+              >
+                Privacy Policy
+              </Link>
 
               <Link
                 href="/login"
@@ -545,10 +645,14 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-8 border-t border-slate-800 pt-6">
-            <p className="text-xs text-slate-600">
-              © {new Date().getFullYear()} CompMind. Built for competitive
-              players.
+          <div className="mt-10 border-t border-slate-800 pt-6">
+            <p className="text-xs leading-5 text-slate-600">
+              © {new Date().getFullYear()} CompMind. All rights reserved.
+            </p>
+
+            <p className="mt-2 max-w-4xl text-xs leading-5 text-slate-600">
+              CompMind is an independent service and is not affiliated
+              with, sponsored by, or endorsed by Epic Games.
             </p>
           </div>
         </div>
@@ -663,6 +767,26 @@ function MiniStat({
   );
 }
 
+function InfoCard({
+  label,
+  value,
+}: {
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white p-5">
+      <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+        {label}
+      </p>
+
+      <p className="mt-2 font-bold text-slate-950">
+        {value}
+      </p>
+    </div>
+  );
+}
+
 function PricingCard({
   name,
   price,
@@ -694,7 +818,9 @@ function PricingCard({
         </div>
       )}
 
-      <p className="text-sm font-bold text-slate-500">{name}</p>
+      <p className="text-sm font-bold text-slate-500">
+        {name}
+      </p>
 
       <p className="mt-3 text-3xl font-black text-slate-950">
         {price}
@@ -704,16 +830,17 @@ function PricingCard({
         {description}
       </p>
 
-      <div className="my-7 h-px bg-slate-100" />
-
-      <div className="space-y-4">
+      <div className="mt-6 space-y-3">
         {features.map((feature) => (
-          <div key={feature} className="flex items-center gap-3">
-            <span className="text-sm font-bold text-emerald-600">
+          <div
+            key={feature}
+            className="flex items-center gap-3"
+          >
+            <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-50 text-xs font-black text-blue-600">
               ✓
             </span>
 
-            <span className="text-sm text-slate-600">
+            <span className="text-sm font-medium text-slate-700">
               {feature}
             </span>
           </div>
@@ -722,9 +849,9 @@ function PricingCard({
 
       <Link
         href={href}
-        className={`mt-8 flex min-h-11 items-center justify-center rounded-xl px-5 py-3 text-sm font-bold transition ${
+        className={`mt-8 block rounded-2xl px-5 py-3.5 text-center text-sm font-bold transition ${
           featured
-            ? "bg-blue-600 text-white hover:bg-blue-700"
+            ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20 hover:bg-blue-700"
             : "border border-slate-200 bg-white text-slate-700 hover:border-blue-200 hover:text-blue-600"
         }`}
       >
