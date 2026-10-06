@@ -1,387 +1,332 @@
-import type { Metadata } from "next";
+import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy — CompMind",
-  description:
-    "Learn how CompMind collects, uses, stores, and protects your information.",
+export const metadata = {
+  title: "Privacy Policy | CompMind",
+  description: "CompMind Privacy Policy",
 };
 
-export default function PrivacyPage() {
+export default function PrivacyPolicyPage() {
   return (
-    <main className="min-h-screen bg-[#f7faff] text-slate-900">
-      <div className="mx-auto max-w-4xl px-6 py-16 sm:px-8 lg:py-24">
-        <div className="mb-12">
-          <a
-            href="/"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition hover:text-blue-700"
-          >
-            ← Back to CompMind
-          </a>
-
-          <div className="mt-10">
-            <div className="mb-4 inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700">
-              Legal
+    <main className="min-h-screen bg-slate-50 text-slate-900">
+      <header className="border-b border-slate-200 bg-white">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
+          <Link href="/" className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black text-sm font-bold text-white">
+              CM
             </div>
 
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              Privacy Policy
-            </h1>
+            <span className="text-xl font-bold">CompMind</span>
+          </Link>
 
-            <p className="mt-4 text-base text-slate-500">
-              Last updated: October 5, 2026
-            </p>
-          </div>
+          <Link
+            href="/"
+            className="text-sm font-medium text-slate-500 hover:text-slate-900"
+          >
+            Back to CompMind
+          </Link>
+        </div>
+      </header>
+
+      <section className="mx-auto max-w-4xl px-6 py-16">
+        <div className="mb-10">
+          <p className="mb-3 text-sm font-bold uppercase tracking-wide text-blue-600">
+            Legal & Privacy
+          </p>
+
+          <h1 className="text-5xl font-black tracking-tight">
+            Privacy Policy
+          </h1>
+
+          <p className="mt-5 text-lg leading-8 text-slate-500">
+            This Privacy Policy explains how CompMind collects, uses,
+            stores, and protects information when you use our website
+            and services.
+          </p>
+
+          <p className="mt-4 text-sm text-slate-400">
+            Last updated: 6 October 2026
+          </p>
         </div>
 
-        <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm sm:p-10">
-          <div className="space-y-10 text-[15px] leading-7 text-slate-600">
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                1. Introduction
-              </h2>
-              <p>
-                Welcome to CompMind. CompMind is a competitive gaming
-                improvement platform designed to help players analyse their
-                gameplay, identify weaknesses, and improve their performance.
-              </p>
-              <p className="mt-3">
-                This Privacy Policy explains what information we may collect,
-                how we use it, how we protect it, and the choices you have
-                regarding your information when you use CompMind.
-              </p>
-            </section>
+        <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm md:p-12">
 
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                2. Information We Collect
-              </h2>
+          <Section title="1. About CompMind">
+            <p>
+              CompMind ("CompMind", "we", "us", or "our") operates
+              compmind.xyz and provides competitive gaming analytics,
+              performance tracking, training, and related services.
+            </p>
 
-              <p>
-                Depending on how you use CompMind, we may collect the following
-                categories of information:
-              </p>
+            <p>
+              This Privacy Policy explains how information may be
+              collected and processed when you use CompMind.
+            </p>
+          </Section>
 
-              <h3 className="mt-5 font-semibold text-slate-900">
-                Account information
-              </h3>
-              <p className="mt-2">
-                This may include information such as your name, email address,
-                username, account identifiers, and authentication information.
-              </p>
+          <Section title="2. Information We Collect">
+            <p>
+              Depending on how you use CompMind, we may collect different
+              types of information.
+            </p>
 
-              <h3 className="mt-5 font-semibold text-slate-900">
-                Gaming information
-              </h3>
-              <p className="mt-2">
-                If you connect a gaming account or use gameplay-related
-                features, CompMind may process information associated with that
-                account, such as Fortnite player information, match statistics,
-                tournament results, placements, eliminations, and other
-                gameplay-related information made available to the service.
-              </p>
+            <h3>Account Information</h3>
 
-              <h3 className="mt-5 font-semibold text-slate-900">
-                Replay and gameplay data
-              </h3>
-              <p className="mt-2">
-                If you upload replay files or other gameplay information,
-                CompMind may process that information to provide gameplay
-                analysis, identify patterns, and generate personalised
-                recommendations.
-              </p>
+            <ul>
+              <li>Name or display name</li>
+              <li>Email address</li>
+              <li>Authentication information</li>
+              <li>Account preferences</li>
+              <li>Subscription information</li>
+              <li>Referral or promotional information</li>
+            </ul>
 
-              <h3 className="mt-5 font-semibold text-slate-900">
-                Usage information
-              </h3>
-              <p className="mt-2">
-                We may collect information about how you interact with the
-                website, including pages visited, features used, device
-                information, browser information, approximate location derived
-                from technical information, and diagnostic information.
-              </p>
-            </section>
+            <h3>Gaming and Performance Information</h3>
 
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                3. How We Use Information
-              </h2>
+            <ul>
+              <li>Player or account identifiers</li>
+              <li>Match information</li>
+              <li>Tournament information</li>
+              <li>Placements and eliminations</li>
+              <li>Gameplay statistics</li>
+              <li>Performance statistics</li>
+              <li>Uploaded replay files</li>
+              <li>Gameplay analysis information</li>
+              <li>Training and improvement information</li>
+            </ul>
 
-              <p>We may use information to:</p>
+            <h3>Technical Information</h3>
 
-              <ul className="mt-3 list-disc space-y-2 pl-6">
-                <li>Provide and operate CompMind.</li>
-                <li>Create and manage user accounts.</li>
-                <li>Authenticate users.</li>
-                <li>Analyse gameplay and replay data.</li>
-                <li>Identify gameplay strengths and weaknesses.</li>
-                <li>Generate personalised training recommendations.</li>
-                <li>Track player progress and performance.</li>
-                <li>Provide tournament and competitive features.</li>
-                <li>Process subscriptions and payments.</li>
-                <li>Improve the performance and reliability of the service.</li>
-                <li>Detect abuse, fraud, or security issues.</li>
-                <li>Communicate important service-related information.</li>
-                <li>Comply with applicable legal obligations.</li>
-              </ul>
-            </section>
+            <ul>
+              <li>IP address</li>
+              <li>Browser type</li>
+              <li>Device type</li>
+              <li>Operating system</li>
+              <li>Website usage information</li>
+              <li>Error and diagnostic information</li>
+            </ul>
+          </Section>
 
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                4. Gameplay and AI Analysis
-              </h2>
+          <Section title="3. How We Use Information">
+            <p>
+              We may use information collected through CompMind to:
+            </p>
 
-              <p>
-                CompMind may use automated systems, including artificial
-                intelligence and machine-learning technologies, to analyse
-                gameplay and provide recommendations.
-              </p>
+            <ul>
+              <li>Create and maintain user accounts</li>
+              <li>Provide CompMind features and services</li>
+              <li>Analyse gameplay and performance</li>
+              <li>Provide personalised training recommendations</li>
+              <li>Track player improvement</li>
+              <li>Display statistics and performance history</li>
+              <li>Process subscriptions and payments</li>
+              <li>Provide customer support</li>
+              <li>Improve and develop our services</li>
+              <li>Detect abuse, fraud, or security problems</li>
+              <li>Maintain service security and reliability</li>
+              <li>Communicate with users about their accounts</li>
+              <li>Comply with applicable legal requirements</li>
+            </ul>
+          </Section>
 
-              <p className="mt-3">
-                Gameplay information may be processed to identify patterns such
-                as positioning, rotations, fights, resource management,
-                decision-making, endgame performance, and other competitive
-                gameplay factors.
+          <Section title="4. Gameplay and Uploaded Data">
+            <p>
+              Certain CompMind features may allow users to upload
+              gameplay files or provide gameplay-related information
+              for analysis.
+            </p>
+
+            <p>
+              Information submitted for analysis may be processed by
+              CompMind systems and, where necessary to provide requested
+              functionality, by service providers acting on our behalf.
+            </p>
+          </Section>
+
+          <Section title="5. Third-Party Services">
+            <p>
+              CompMind may use third-party providers to support services
+              such as authentication, hosting, databases, analytics,
+              payment processing, email delivery, security, and data
+              processing.
+            </p>
+
+            <div className="my-6 rounded-2xl border border-blue-100 bg-blue-50 p-5">
+              <p className="font-bold text-blue-950">
+                Independent service
               </p>
 
-              <p className="mt-3">
-                AI-generated recommendations are intended to assist players
-                with improvement and should not be considered professional or
-                guaranteed advice.
+              <p className="mt-2 text-blue-900">
+                CompMind is an independent service and is not affiliated
+                with, sponsored by, or endorsed by third-party game
+                publishers or developers unless explicitly stated otherwise.
               </p>
-            </section>
+            </div>
+          </Section>
 
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                5. Epic Games and Fortnite
-              </h2>
+          <Section title="6. Cookies">
+            <p>
+              CompMind may use cookies and similar technologies to support
+              website functionality, maintain sessions, remember
+              preferences, understand website usage, and improve security.
+            </p>
+          </Section>
 
-              <p>
-                CompMind may integrate with Epic Games services or use
-                information associated with Fortnite accounts where supported
-                by the relevant APIs or services.
-              </p>
+          <Section title="7. Payments and Subscriptions">
+            <p>
+              If you purchase a CompMind subscription or another paid
+              service, payment information may be processed by a
+              third-party payment provider.
+            </p>
 
-              <p className="mt-3">
-                CompMind is an independent service and is not affiliated with,
-                endorsed by, or sponsored by Epic Games, Inc. or Fortnite,
-                unless explicitly stated otherwise.
-              </p>
+            <p>
+              Where payment processing is handled by a third-party
+              provider, CompMind does not need to store complete payment
+              card details.
+            </p>
+          </Section>
 
-              <p className="mt-3">
-                Any use of Epic Games services is also subject to the
-                applicable Epic Games terms and privacy policies.
-              </p>
-            </section>
+          <Section title="8. Data Security">
+            <p>
+              We take reasonable technical and organisational measures
+              designed to protect information against unauthorised access,
+              alteration, disclosure, or destruction.
+            </p>
 
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                6. Cookies and Similar Technologies
-              </h2>
+            <p>
+              However, no internet-based service can guarantee complete
+              security.
+            </p>
+          </Section>
 
-              <p>
-                CompMind may use cookies, local storage, session technologies,
-                and similar technologies to keep users signed in, maintain
-                preferences, provide essential functionality, improve security,
-                and understand how the service is used.
-              </p>
+          <Section title="9. Data Retention">
+            <p>
+              We may retain personal information for as long as reasonably
+              necessary to provide our services, maintain accounts, comply
+              with legal obligations, resolve disputes, enforce agreements,
+              and protect our legitimate interests.
+            </p>
+          </Section>
 
-              <p className="mt-3">
-                Some third-party services used by CompMind may also use
-                cookies or similar technologies in accordance with their own
-                privacy policies.
-              </p>
-            </section>
+          <Section title="10. Your Rights">
+            <p>
+              Depending on your location and applicable law, you may have
+              rights regarding your personal information, including:
+            </p>
 
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                7. Payments and Subscriptions
-              </h2>
+            <ul>
+              <li>Accessing personal information</li>
+              <li>Correcting inaccurate information</li>
+              <li>Requesting deletion of information</li>
+              <li>Requesting restriction of certain processing</li>
+              <li>Objecting to certain processing</li>
+              <li>Requesting a copy of certain information</li>
+              <li>Withdrawing consent where applicable</li>
+            </ul>
+          </Section>
 
-              <p>
-                If you purchase a CompMind subscription or other paid service,
-                payments may be processed by third-party payment providers.
-              </p>
+          <Section title="11. Children's Privacy">
+            <p>
+              CompMind does not knowingly collect personal information
+              from children where doing so would be prohibited by
+              applicable law.
+            </p>
+          </Section>
 
-              <p className="mt-3">
-                CompMind does not need to store your full payment card number
-                when payment processing is handled by an external payment
-                provider. Payment providers may process payment and billing
-                information according to their own privacy policies and terms.
-              </p>
-            </section>
+          <Section title="12. Third-Party Websites">
+            <p>
+              CompMind may contain links to third-party websites or
+              services. We are not responsible for the privacy practices,
+              content, or security of third-party websites.
+            </p>
+          </Section>
 
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                8. Third-Party Services
-              </h2>
+          <Section title="13. Changes to This Privacy Policy">
+            <p>
+              We may update this Privacy Policy from time to time to
+              reflect changes to CompMind, our services, or applicable
+              legal requirements.
+            </p>
+          </Section>
 
-              <p>
-                CompMind may use third-party providers for services such as
-                hosting, authentication, analytics, databases, payment
-                processing, email delivery, artificial intelligence
-                processing, security, and other infrastructure.
-              </p>
+          <Section title="14. Contact">
+            <p>
+              If you have questions about this Privacy Policy or
+              CompMind&apos;s privacy practices, you can contact us.
+            </p>
 
-              <p className="mt-3">
-                These providers may process information on our behalf when
-                required to provide their services.
-              </p>
-            </section>
+            <div className="mt-5 rounded-2xl bg-slate-950 p-6 text-white">
+              <p className="font-bold">CompMind</p>
 
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                9. Data Security
-              </h2>
-
-              <p>
-                We take reasonable technical and organisational measures to
-                protect information against unauthorised access, alteration,
-                disclosure, or destruction.
-              </p>
-
-              <p className="mt-3">
-                However, no internet-based service can guarantee absolute
-                security, and we cannot guarantee that information will always
-                be completely secure.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                10. Data Retention
-              </h2>
-
-              <p>
-                We retain information for as long as reasonably necessary to
-                provide CompMind, maintain accounts, provide requested
-                features, meet legal obligations, resolve disputes, enforce
-                agreements, and maintain security.
-              </p>
-
-              <p className="mt-3">
-                Where information is no longer required, we may delete or
-                anonymise it where appropriate.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                11. Your Rights
-              </h2>
-
-              <p>
-                Depending on where you live, you may have rights concerning
-                your personal information, including rights to:
-              </p>
-
-              <ul className="mt-3 list-disc space-y-2 pl-6">
-                <li>Request access to personal information we hold about you.</li>
-                <li>Request correction of inaccurate information.</li>
-                <li>Request deletion of certain information.</li>
-                <li>Request restriction of certain processing.</li>
-                <li>Object to certain processing.</li>
-                <li>Request a copy of certain information.</li>
-                <li>Withdraw consent where processing is based on consent.</li>
-              </ul>
-
-              <p className="mt-3">
-                Some rights may be subject to legal limitations or exceptions.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                12. Account and Data Deletion
-              </h2>
-
-              <p>
-                You may request deletion of your CompMind account and
-                associated personal information by contacting us.
-              </p>
-
-              <p className="mt-3">
-                Certain information may need to be retained where required by
-                law, necessary for legitimate business purposes, or required
-                to prevent fraud or abuse.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                13. Children's Privacy
-              </h2>
-
-              <p>
-                CompMind is not intended to knowingly collect personal
-                information from children where such collection is prohibited
-                by applicable law.
-              </p>
-
-              <p className="mt-3">
-                If you believe that a child has provided personal information
-                to CompMind in circumstances where this should not have
-                occurred, please contact us so that we can review the matter
-                and take appropriate action.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                14. International Data Transfers
-              </h2>
-
-              <p>
-                CompMind and its service providers may process information in
-                countries other than the country where you live. Where required
-                by applicable law, appropriate safeguards will be used for
-                international transfers of personal information.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                15. Changes to This Privacy Policy
-              </h2>
-
-              <p>
-                We may update this Privacy Policy from time to time as CompMind
-                develops, new features are introduced, or legal requirements
-                change.
-              </p>
-
-              <p className="mt-3">
-                When changes are made, the updated version will be published on
-                this page and the “Last updated” date will be changed.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                16. Contact Us
-              </h2>
-
-              <p>
-                If you have questions about this Privacy Policy, your personal
-                information, or a request relating to your data, you can
-                contact CompMind at:
-              </p>
-
-              <p className="mt-4">
+              <p className="mt-2 text-slate-300">
+                Email:{" "}
                 <a
                   href="mailto:evanridley1008@gmail.com"
-                  className="font-semibold text-blue-600 hover:text-blue-700"
+                  className="underline"
                 >
                   evanridley1008@gmail.com
                 </a>
               </p>
-            </section>
-          </div>
-        </div>
 
-        <footer className="mt-8 text-center text-sm text-slate-400">
-          © {new Date().getFullYear()} CompMind. All rights reserved.
-        </footer>
-      </div>
+              <p className="text-slate-300">
+                Website:{" "}
+                <a
+                  href="https://compmind.xyz"
+                  className="underline"
+                >
+                  compmind.xyz
+                </a>
+              </p>
+            </div>
+          </Section>
+
+          <Section title="15. Independent Service Disclaimer">
+            <p>
+              CompMind is an independent competitive gaming analytics
+              and training service.
+            </p>
+
+            <p>
+              References to games, platforms, publishers, developers,
+              tournaments, or other third-party services are used only
+              where necessary to describe functionality or identify
+              compatible services.
+            </p>
+
+            <p>
+              Such references do not imply ownership, sponsorship,
+              partnership, affiliation, or endorsement unless explicitly
+              stated.
+            </p>
+          </Section>
+
+        </div>
+      </section>
+
+      <footer className="border-t border-slate-200 bg-white">
+        <div className="mx-auto max-w-5xl px-6 py-8 text-center text-sm text-slate-500">
+          © 2026 CompMind. All rights reserved.
+        </div>
+      </footer>
     </main>
+  );
+}
+
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="mb-12 last:mb-0">
+      <h2 className="text-2xl font-bold tracking-tight text-slate-950">
+        {title}
+      </h2>
+
+      <div className="mt-4 space-y-4 text-[15px] leading-7 text-slate-600">
+        {children}
+      </div>
+    </section>
   );
 }
